@@ -16,16 +16,17 @@ public class InterfaceManager : MonoBehaviour
     [SerializeField]
     private Sprite[] collectibleSource;
 
-    // Start is called before the first frame update
     void Start()
     {
-        
+        dialogueBox.SetActive(false);
     }
 
-    // Update is called once per frame
     void Update()
     {
-
+        if (Input.GetButton("Submit"))
+        {
+            dialogueBox.SetActive(false);
+        }
     }
 
     public void CollectibleUpdate(int item)
@@ -35,6 +36,8 @@ public class InterfaceManager : MonoBehaviour
 
     public void ShowBox(string dialogue, int item)
     {
+        dialogueBox.SetActive(true);
+
         if (npc.GetComponent<DialogueOpen>().begin)
         {
             scatterCoins();

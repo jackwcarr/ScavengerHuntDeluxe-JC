@@ -21,11 +21,17 @@ public class DialogueOpen : MonoBehaviour
         greeting = GetComponent<AudioSource>();
         collectibles = new string[] { "film", "balloons", "life saver", "bull's eye", "pipe", "key", "fish", "birdhouse", "red airhorn", "magic hat" };
         createClue();
-    }
+    } 
 
     public void createClue()
     {
         clue = Random.Range(0, 9);
+        searchDialogue();
+    }
+
+    public void searchDialogue()
+    {
+        dialogue = "Hi! Can you help me find my " + collectibles[clue] + "?";
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -35,6 +41,7 @@ public class DialogueOpen : MonoBehaviour
             checkClue();
         }
         greeting.Play(0);
+        interfaceManager.GetComponent<InterfaceManager>().ShowBox(dialogue, clue);
     }
 
     private void checkClue()
