@@ -15,7 +15,6 @@ public class DialogueOpen : MonoBehaviour
 
     private AudioSource greeting;
 
-    // Start is called before the first frame update
     void Start()
     {
         greeting = GetComponent<AudioSource>();
@@ -48,11 +47,12 @@ public class DialogueOpen : MonoBehaviour
     {
         if (pHolding.holdValue == clue)
         {
+            dialogue = "Thankyou kindly, You have succesfully found my " + collectibles[clue] + ".";
             end = true;
         }
         else
         {
-
+            dialogue = "Sorry, you must know that what you collected isn't my " + collectibles[clue] + ".";
         }
     }
 

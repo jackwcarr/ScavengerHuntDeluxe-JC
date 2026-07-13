@@ -13,6 +13,9 @@ public class InterfaceManager : MonoBehaviour
     public GameObject npc;
     public GameObject randomSpawn;
 
+    public Image collectable;
+    public GameObject showSprite;
+
     [SerializeField]
     private Sprite[] collectibleSource;
 
@@ -23,7 +26,7 @@ public class InterfaceManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButton("Submit"))
+        if (Input.GetButton("Submit") && dialogueBox.activeInHierarchy)
         {
             dialogueBox.SetActive(false);
         }
@@ -37,6 +40,8 @@ public class InterfaceManager : MonoBehaviour
     public void ShowBox(string dialogue, int item)
     {
         dialogueBox.SetActive(true);
+        dialogueText.text = dialogue;
+        seekImage.GetComponent<Image>().sprite = collectibleSource[item];
 
         if (npc.GetComponent<DialogueOpen>().begin)
         {
